@@ -57,7 +57,7 @@ class App extends Component {
         <div className="col">
           <h2>Your words</h2>
           <form action="#" onSubmit={this.onNewWordSubmit}>
-            <input type="text" placeholder="Cats"/>
+            <input type="text" placeholder="Add a word.... (press enter)"/>
           </form>
           <ul>
             {this.state.keyWords.map(word => {

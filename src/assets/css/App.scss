@@ -1,5 +1,10 @@
+
+@font-face {
+  font-family: Karla;
+  src: url('../fonts/Karla-Regular.ttf');
+}
 body {
-  font-family: Arial, sans-serif;
+  font-family: Karla, Arial, sans-serif;
   font-size: 14px;
   margin: 0;
   padding: 0;
@@ -24,7 +29,13 @@ body {
 
     &:first-child {
       color: #000;
-      background-color: #cdd0ef;
+      background-color: #d5dcef;
     }
+  }
+
+  input {
+    border: solid 3px #232032;
+    padding: 4px;
+    width: 100%;
   }
 }
