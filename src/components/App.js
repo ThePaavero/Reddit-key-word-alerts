@@ -30,6 +30,7 @@ class App extends Component {
         response.data.data.children.map(child => child.data).forEach(post => {
           this.state.keyWords.forEach(word => {
             if (post.title.toLowerCase().includes(word.toLowerCase())) {
+              post.matchingWord = word
               matches.push(post)
             }
           })
@@ -44,6 +45,7 @@ class App extends Component {
     const form = e.currentTarget
     const field = form.querySelector('input')
     const newWord = field.value.trim()
+    field.value = ''
     if (newWord === '') {
       return
     }
@@ -95,10 +97,13 @@ class App extends Component {
         </div>
         <div className="col">
           <h2>Results</h2>
-          <ul>
+          <ul className="matches-list">
             {this.state.matches.map(post => {
               return (
-                <li key={post.title}>{post.title}</li>
+                <li key={post.title}>
+                  <h4>{post.matchingWord}</h4>
+                  <h3>{post.title}</h3>
+                </li>
               )
             })}
           </ul>
