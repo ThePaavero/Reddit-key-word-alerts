@@ -6,6 +6,15 @@ class App extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      keyWords: [
+        'eric',
+        'usa',
+        'ea',
+        'may',
+      ],
+      matches: [],
+    }
   }
 
   componentDidMount() {
@@ -16,8 +25,15 @@ class App extends Component {
     const url = 'https://www.reddit.com/r/all.json'
     axios.get(url)
       .then(response => {
-        const posts = response.data.data.children.map(child=>child.data)
-        console.log(posts)
+        const matches = []
+        response.data.data.children.map(child => child.data).forEach(post => {
+          this.state.keyWords.forEach(word => {
+            if (post.title.includes(word)) {
+              matches.push(post)
+            }
+          })
+        })
+        this.setState({matches})
       })
       .catch(console.log)
   }
@@ -25,8 +41,26 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Hello, Electron!</h1>
-        <p>I hope you enjoy using basic-electron-react-boilerplate to start your dev off right!</p>
+        <div className="col">
+          Your words:
+          <ul>
+            {this.state.keyWords.map(word => {
+              return (
+                <li key={word}>{word}</li>
+              )
+            })}
+          </ul>
+        </div>
+        <div className="col">
+          Results:
+          <ul>
+            {this.state.matches.map(post => {
+              return (
+                <li key={post.title}>{post.title}</li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
     )
   }
