@@ -7,14 +7,10 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      keyWords: [
-        'eric',
-        'usa',
-        'ea',
-        'may',
-      ],
+      keyWords: [],
       matches: [],
     }
+    this.onNewWordSubmit = this.onNewWordSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -38,11 +34,31 @@ class App extends Component {
       .catch(console.log)
   }
 
+  onNewWordSubmit(e) {
+    e.preventDefault()
+    const form = e.currentTarget
+    const field = form.querySelector('input')
+    const newWord = field.value.trim()
+    if (newWord === '') {
+      return
+    }
+    this.setState(state => {
+      const keyWords = [...state.keyWords, newWord]
+      return {
+        keyWords,
+        value: '',
+      }
+    })
+  }
+
   render() {
     return (
       <div>
         <div className="col">
           Your words:
+          <form action="#" onSubmit={this.onNewWordSubmit}>
+            <input type="text" placeholder="Cats"/>
+          </form>
           <ul>
             {this.state.keyWords.map(word => {
               return (
