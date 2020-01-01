@@ -8,6 +8,7 @@ body {
   font-size: 14px;
   margin: 0;
   padding: 0;
+  cursor: url("../images/cursor.png"), auto;
 
   * {
     box-sizing: border-box;
@@ -31,6 +32,10 @@ body {
     padding: 20px;
     background-color: #232032;
     color: #fff;
+
+    h2 {
+      margin-bottom: 20px;
+    }
 
     &:first-child {
       color: #000;
@@ -75,6 +80,7 @@ body {
       margin-bottom: 5px;
 
       button {
+        cursor: url("../images/cursor.png"), auto;
         float: right;
         border: none;
         background: transparent;
