@@ -29,7 +29,7 @@ class App extends Component {
         const matches = []
         response.data.data.children.map(child => child.data).forEach(post => {
           this.state.keyWords.forEach(word => {
-            if (post.title.includes(word)) {
+            if (post.title.toLowerCase().includes(word.toLowerCase())) {
               matches.push(post)
             }
           })
@@ -56,6 +56,7 @@ class App extends Component {
     })
     setTimeout(() => {
       window.localStorage.setItem('keywords', JSON.stringify(this.state.keyWords))
+      this.pollAll()
     }, 10)
   }
 
@@ -67,6 +68,7 @@ class App extends Component {
         value: '',
       }
     })
+    this.pollAll()
   }
 
   render() {
