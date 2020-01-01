@@ -76,6 +76,26 @@ class App extends Component {
     this.pollAll()
   }
 
+  getResultListItems() {
+    if (this.state.matches.length < 1 && !this.state.loadingPosts) {
+      return (
+        <span className="no-results">No results.</span>
+      )
+    }
+    return (
+      <ul className="matches-list">
+        {this.state.matches.map(post => {
+          return (
+            <li key={post.title}>
+              <h4>{post.matchingWord}</h4>
+              <h3>{post.title}</h3>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+
   render() {
     return (
       <div className="app">
@@ -100,16 +120,7 @@ class App extends Component {
         </div>
         <div className="col">
           <h2>Results</h2>
-          <ul className="matches-list">
-            {this.state.matches.map(post => {
-              return (
-                <li key={post.title}>
-                  <h4>{post.matchingWord}</h4>
-                  <h3>{post.title}</h3>
-                </li>
-              )
-            })}
-          </ul>
+          {this.getResultListItems()}
           {this.state.loadingPosts ? (
             <div className="loading-indicator">Fetching data...</div>
           ) : null}
