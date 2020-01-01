@@ -49,6 +49,9 @@ class App extends Component {
         value: '',
       }
     })
+    setTimeout(() => {
+      window.localStorage.setItem('keywords', JSON.stringify(this.state.keyWords))
+    }, 10)
   }
 
   render() {
