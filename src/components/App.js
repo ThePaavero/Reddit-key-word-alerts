@@ -21,6 +21,10 @@ class App extends Component {
       this.setState({keyWords: wordsOnDisk})
       this.pollAll()
     }
+
+    setInterval(() => {
+      this.pollAll()
+    }, 300000) // 300000 = 5 minutes.
   }
 
   pollAll() {
@@ -76,6 +80,11 @@ class App extends Component {
     this.pollAll()
   }
 
+  highLightWordsInString(word, string) {
+    console.log(word, string)
+    return string
+  }
+
   getResultListItems() {
     if (this.state.matches.length < 1 && !this.state.loadingPosts) {
       return (
@@ -90,7 +99,8 @@ class App extends Component {
               require('electron').shell.openExternal('https://www.reddit.com' + post.permalink)
             }}>
               <h4>{post.matchingWord}</h4>
-              <h3>{post.title}</h3>
+              <span className="subreddit-badge">/r/{post.subreddit}</span>
+              <h3>{this.highLightWordsInString(post.matchingWord, post.title)}</h3>
             </li>
           )
         })}
