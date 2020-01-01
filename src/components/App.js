@@ -86,7 +86,9 @@ class App extends Component {
       <ul className="matches-list">
         {this.state.matches.map(post => {
           return (
-            <li key={post.title}>
+            <li key={post.title} onClick={() => {
+              require('electron').shell.openExternal('https://www.reddit.com' + post.permalink)
+            }}>
               <h4>{post.matchingWord}</h4>
               <h3>{post.title}</h3>
             </li>

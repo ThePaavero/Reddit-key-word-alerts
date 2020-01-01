@@ -1,3 +1,5 @@
+$accent: #e6ff2b;
+
 @font-face {
   font-family: Karla;
   src: url('../fonts/Karla-Regular.ttf');
@@ -67,6 +69,13 @@ body {
     border: solid 3px #232032;
     padding: 4px;
     width: 100%;
+  }
+
+  .subreddit-badge {
+    font-size: 11px;
+    display: inline-block;
+    margin-left: 10px;
+    color: $accent;
   }
 
   ul {
