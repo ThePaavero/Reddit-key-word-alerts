@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {
       keyWords: [],
       matches: [],
+      loadingPosts: false,
     }
     this.onNewWordSubmit = this.onNewWordSubmit.bind(this)
   }
@@ -24,8 +25,10 @@ class App extends Component {
 
   pollAll() {
     const url = 'https://www.reddit.com/r/all.json'
+    this.setState({loadingPosts: true})
     axios.get(url)
       .then(response => {
+        this.setState({loadingPosts: false})
         const matches = []
         response.data.data.children.map(child => child.data).forEach(post => {
           this.state.keyWords.forEach(word => {
@@ -107,6 +110,9 @@ class App extends Component {
               )
             })}
           </ul>
+          {this.state.loadingPosts ? (
+            <div className="loading-indicator">Fetching data...</div>
+          ) : null}
         </div>
       </div>
     )
