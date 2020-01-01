@@ -14,7 +14,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.pollAll()
+    let wordsOnDisk = window.localStorage.getItem('keywords')
+    if (wordsOnDisk) {
+      wordsOnDisk = JSON.parse(wordsOnDisk)
+      this.setState({keyWords: wordsOnDisk})
+      this.pollAll()
+    }
   }
 
   pollAll() {
@@ -54,18 +59,34 @@ class App extends Component {
     }, 10)
   }
 
+  deleteKeyWord(word) {
+    this.setState(state => {
+      const keyWords = [...state.keyWords].filter(kw => kw !== word)
+      return {
+        keyWords,
+        value: '',
+      }
+    })
+  }
+
   render() {
     return (
       <div className="app">
         <div className="col">
           <h2>Your words</h2>
           <form action="#" onSubmit={this.onNewWordSubmit}>
-            <input type="text" placeholder="Add a word.... (press enter)"/>
+            <input type="text" placeholder="Add a word... (press enter)"/>
           </form>
           <ul>
             {this.state.keyWords.map(word => {
               return (
-                <li key={word}>{word}</li>
+                <li key={word}>
+                  {word}
+                  <button onClick={() => {
+                    this.deleteKeyWord(word)
+                  }}>×
+                  </button>
+                </li>
               )
             })}
           </ul>
