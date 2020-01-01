@@ -53,9 +53,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <div className="col">
-          Your words:
+          <h2>Your words</h2>
           <form action="#" onSubmit={this.onNewWordSubmit}>
             <input type="text" placeholder="Cats"/>
           </form>
@@ -68,7 +68,7 @@ class App extends Component {
           </ul>
         </div>
         <div className="col">
-          Results:
+          <h2>Results</h2>
           <ul>
             {this.state.matches.map(post => {
               return (

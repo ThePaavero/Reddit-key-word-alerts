@@ -1,4 +1,30 @@
 body {
   font-family: Arial, sans-serif;
   font-size: 14px;
+  margin: 0;
+  padding: 0;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.app {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+
+  .col {
+    flex: 1;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 20px;
+    background-color: #232032;
+    color: #fff;
+
+    &:first-child {
+      color: #000;
+      background-color: #cdd0ef;
+    }
+  }
 }
