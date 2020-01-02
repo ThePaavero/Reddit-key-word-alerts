@@ -107,4 +107,16 @@ body {
   span.highlight {
     text-decoration: underline;
   }
+
+  .loading-indicator {
+
+    &.hide {
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    &.show {
+      opacity: 1;
+    }
+  }
 }

@@ -140,9 +140,7 @@ class App extends Component {
         <div className="col">
           <h2>Results</h2>
           {this.getResultListItems()}
-          {this.state.loadingPosts ? (
-            <div className="loading-indicator">Fetching data...</div>
-          ) : null}
+          <div className={'loading-indicator' + (this.state.loadingPosts ? ' show' : ' hide')}>Fetching data...</div>
         </div>
       </div>
     )
