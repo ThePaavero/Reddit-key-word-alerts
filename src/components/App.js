@@ -95,7 +95,7 @@ class App extends Component {
   getResultListItems() {
     if (this.state.matches.length < 1 && !this.state.loadingPosts) {
       return (
-        <span className="no-results">No results.</span>
+        <span className="no-results hide-for-fade-out">No results.</span>
       )
     }
     return (
