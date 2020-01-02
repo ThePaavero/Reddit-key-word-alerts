@@ -1,7 +1,7 @@
 'use strict';
 
 // Import parts of electron to use
-const { app, BrowserWindow } = require('electron');
+const {app, BrowserWindow} = require('electron');
 const path = require('path')
 const url = require('url')
 
@@ -18,11 +18,14 @@ if (process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) |
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1280, height: 600, show: false,
+    width: 1280, height: 800, show: false,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    title: 'Reddit key word alerts',
   });
+
+  mainWindow.setAutoHideMenuBar(true)
 
   // and load the index.html of the app.
   let indexPath;
@@ -52,7 +55,7 @@ function createWindow() {
   });
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
+  mainWindow.on('closed', function() {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
