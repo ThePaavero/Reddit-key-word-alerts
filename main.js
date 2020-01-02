@@ -20,9 +20,13 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1280, height: 800, show: false,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
     },
     title: 'Reddit key word alerts',
+  });
+
+  mainWindow.on('page-title-updated', (evt) => {
+    evt.preventDefault();
   });
 
   mainWindow.setAutoHideMenuBar(true)
