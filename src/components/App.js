@@ -82,7 +82,14 @@ class App extends Component {
 
   highLightWordsInString(word, string) {
     console.log(word, string)
-    return string
+    const replace = word;
+    new RegExp(replace, 'g');
+    const html = {__html: string.replace(replace, `<span class="highlight">${word}</span>`)}
+    return (
+      <span dangerouslySetInnerHTML={html}>
+      </span>
+    )
+    // return string.replace(replace, `<span class="highlight">${word}</span>`)
   }
 
   getResultListItems() {
